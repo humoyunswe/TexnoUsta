@@ -1,0 +1,493 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>TexnoUsta | Ремонт холодильников и бытовой техники</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Header -->
+    <header class="rt-header">
+        <div class="rt-container">
+            <!-- Phone Numbers Display (Mobile Only) -->
+           
+            
+            <div class="rt-header__content">
+                <a href="#" class="rt-logo">
+                    <div class="rt-logo__icon">T</div>
+                    <span>TexnoUsta</span>
+                </a>
+                
+                <nav class="rt-nav">
+                    <a href="#" class="rt-nav__link">Главная</a>
+                    <a href="#services" class="rt-nav__link">Услуги</a>
+                    <a href="#pricing" class="rt-nav__link">Цены</a>
+                    <a href="#process" class="rt-nav__link">Как мы работаем</a>
+                    <a href="#contact" class="rt-nav__link">Контакты</a>
+                </nav>
+                
+                <div class="rt-actions">
+                    <button class="rt-theme-switch" aria-label="Переключить тему">
+                        <svg class="rt-theme-switch__icon rt-theme-switch__icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="rt-theme-switch__icon rt-theme-switch__icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button class="rt-lang-switch" aria-label="Переключить язык">
+                        <span class="rt-lang-switch__option rt-lang-switch__option--ru">RU</span>
+                        <span class="rt-lang-switch__option rt-lang-switch__option--uz">UZ</span>
+                        <div class="rt-lang-switch__slider"></div>
+                    </button>
+                    <div class="rt-phone-dropdown">
+                        <button class="rt-button rt-button--secondary rt-phone-dropdown__toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            Позвонить
+                        </button>
+                        <div class="rt-phone-dropdown__menu">
+                            <a href="tel:+998942159555" class="rt-phone-dropdown__item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                +998 94 215 95 55
+                            </a>
+                            <a href="tel:+998949497073" class="rt-phone-dropdown__item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                +998 94 949 70 73
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="rt-burger" aria-label="Открыть меню">
+                    <span class="rt-burger__line"></span>
+                    <span class="rt-burger__line"></span>
+                    <span class="rt-burger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Mobile Menu -->
+    <div class="rt-mobile-menu">
+        <div class="rt-mobile-menu__header">
+            <a href="#" class="rt-logo">
+                <div class="rt-logo__icon">T</div>
+                <span>TexnoUsta</span>
+            </a>
+            <button class="rt-mobile-menu__close" aria-label="Закрыть меню">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="rt-mobile-menu__actions" style="margin-bottom: 32px;">
+            <a href="https://t.me/texnousta_vohit" target="_blank" class="rt-button rt-button--primary rt-mobile-menu__button" id="mobile-call-master">
+                Вызвать мастера
+            </a>
+            <div class="rt-phone-dropdown">
+                <button class="rt-button rt-button--secondary rt-phone-dropdown__toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    Позвонить
+                </button>
+                <div class="rt-phone-dropdown__menu">
+                    <a href="tel:+998942159555" class="rt-phone-dropdown__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        +998 94 215 95 55
+                    </a>
+                    <a href="tel:+998949497073" class="rt-phone-dropdown__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        +998 94 949 70 73
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="rt-mobile-menu__nav">
+            <a href="#" class="rt-mobile-menu__link">Главная</a>
+            <a href="#services" class="rt-mobile-menu__link">Услуги</a>
+            <a href="#pricing" class="rt-mobile-menu__link">Цены</a>
+            <a href="#process" class="rt-mobile-menu__link">Отзывы</a>
+            <a href="#contact" class="rt-mobile-menu__link">Контакты</a>
+        </nav>
+        <div class="rt-mobile-menu__switchers" style="display: flex; flex-direction: column; gap: 16px; margin-top: 32px;">
+            <button class="rt-button rt-button--primary rt-mobile-menu__button" id="mobileThemeSwitch">
+                Сменить тему
+            </button>
+            <button class="rt-button rt-button--primary rt-mobile-menu__button" id="mobileLangSwitch">
+                Сменить язык
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="rt-hero">
+        <div class="rt-container">
+            <div class="rt-hero__content">
+                <div class="rt-hero__text">
+                    <h1 class="rt-hero__title">Профессиональный ремонт холодильников и бытовой техники</h1>
+                    <p class="rt-hero__description">Мы предлагаем качественный ремонт любой сложности с гарантией. Наши мастера приедут к вам в течение 1 часа и починят вашу технику быстро и надежно.</p>
+                    <a href="https://t.me/texnousta_vohit" target="_blank" class="rt-button rt-button--primary" id="hero-call-master">
+                        Вызвать мастера
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    
+                    <div class="rt-hero__stats">
+                        <div class="rt-stat">
+                            <div class="rt-stat__number">8+</div>
+                            <div class="rt-stat__label">Лет опыта</div>
+                        </div>
+                        <div class="rt-stat">
+                            <div class="rt-stat__number">5000+</div>
+                            <div class="rt-stat__label">Довольных клиентов</div>
+                        </div>
+                        <div class="rt-stat">
+                            <div class="rt-stat__number">100%</div>
+                            <div class="rt-stat__label">Гарантия качества</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rt-hero__image">
+                    <img src="https://santehnikoff.com/wp-content/uploads/2017/04/ustanovka-bytovoj-tehniki-1100x600.jpg" alt="Мастер ремонтирует холодильник">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="rt-services-section">
+        <div class="rt-container">
+            <h2 class="rt-section-title" id="services-title">Наши услуги</h2>
+            <p class="rt-section-description" id="services-desc">Ремонтируем любую бытовую технику быстро, качественно и с гарантией!</p>
+            <div class="rt-services-grid">
+                <div class="rt-service-card">
+                    <div class="rt-service-icon rt-service-img"><img id="service-img-1" src="https://cdn-icons-png.flaticon.com/512/2740/2740948.png" alt="Холодильник"></div>
+                    <h3 class="rt-service-title" id="service-title-1">Ремонт холодильников</h3>
+                    <p class="rt-service-desc" id="service-desc-1">Профессиональный ремонт любых моделей холодильников на дому.</p>
+                </div>
+                <div class="rt-service-card">
+                    <div class="rt-service-icon rt-service-img"><img id="service-img-2" src="https://static.vecteezy.com/system/resources/thumbnails/045/831/963/small_2x/washing-machine-isolated-on-transparent-background-png.png" alt="Стиральная машина"></div>
+                    <h3 class="rt-service-title" id="service-title-2">Ремонт стиральных машин</h3>
+                    <p class="rt-service-desc" id="service-desc-2">Быстро устраним любые поломки стиральных машин всех брендов.</p>
+                </div>
+                <div class="rt-service-card">
+                    <div class="rt-service-icon rt-service-img"><img id="service-img-3" src="https://static.vecteezy.com/system/resources/previews/048/759/744/non_2x/dishwasher-dish-storage-on-transparent-background-png.png" alt="Посудомоечная машина"></div>
+                    <h3 class="rt-service-title" id="service-title-3">Ремонт посудомоечных машин</h3>
+                    <p class="rt-service-desc" id="service-desc-3">Качественный ремонт посудомоечных машин с гарантией результата.</p>
+                </div>
+                <div class="rt-service-card">
+                    <div class="rt-service-icon rt-service-img"><img id="service-img-4" src="https://static.vecteezy.com/system/resources/previews/012/909/758/non_2x/air-conditioner-appliance-free-png.png" alt="Кондиционер"></div>
+                    <h3 class="rt-service-title" id="service-title-4">Ремонт кондиционеров</h3>
+                    <p class="rt-service-desc" id="service-desc-4">Установка и ремонт кондиционеров любых марок.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="rt-advantages-section">
+        <div class="rt-container">
+            <h2 class="rt-section-title" id="advantages-title">Наши преимущества</h2>
+            <p class="rt-section-description" id="advantages-desc">Почему выбирают нас</p>
+            <div class="rt-advantages-grid">
+                <div class="rt-adv-card">
+                    <div class="rt-adv-icon"><img id="adv-img-1" src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Быстрый выезд"></div>
+                    <h3 class="rt-adv-title" id="adv-title-1">Быстрый выезд</h3>
+                    <p class="rt-adv-desc" id="adv-desc-1">Мастер приедет к вам в течение 1 часа после заявки.</p>
+                </div>
+                <div class="rt-adv-card">
+                    <div class="rt-adv-icon"><img id="adv-img-2" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Опытные мастера"></div>
+                    <h3 class="rt-adv-title" id="adv-title-2">Опытные мастера</h3>
+                    <p class="rt-adv-desc" id="adv-desc-2">Только квалифицированные специалисты с опытом от 5 лет.</p>
+                </div>
+                <div class="rt-adv-card">
+                    <div class="rt-adv-icon"><img id="adv-img-3" src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Оригинальные запчасти"></div>
+                    <h3 class="rt-adv-title" id="adv-title-3">Оригинальные запчасти</h3>
+                    <p class="rt-adv-desc" id="adv-desc-3">Используем только оригинальные и проверенные комплектующие.</p>
+                </div>
+                <div class="rt-adv-card">
+                    <div class="rt-adv-icon"><img id="adv-img-4" src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="Гарантия на работы"></div>
+                    <h3 class="rt-adv-title" id="adv-title-4">Гарантия на работы</h3>
+                    <p class="rt-adv-desc" id="adv-desc-4">Официальная гарантия на все виды работ и услуги.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section / How We Work -->
+    <section id="process" class="rt-process-section">
+        <div class="rt-container">
+            <h2 class="rt-section-title" id="process-title">Как мы работаем</h2>
+            <p class="rt-section-description" id="process-desc">Пошаговый процесс работы</p>
+            
+            <div class="rt-process-timeline">
+                <div class="rt-process-step" data-step="1">
+                    <div class="rt-process-content">
+                        <h3 class="rt-process-title" id="process-title-1">Оформление заявки</h3>
+                        <p class="rt-process-desc" id="process-desc-1">Оставьте заявку на сайте или позвоните нам. Наш менеджер свяжется с вами в течение 15 минут.</p>
+                    </div>
+                </div>
+                
+                <div class="rt-process-step" data-step="2">
+                    <div class="rt-process-content">
+                        <h3 class="rt-process-title" id="process-title-2">Диагностика</h3>
+                        <p class="rt-process-desc" id="process-desc-2">Мастер приедет и проведет бесплатную диагностику вашей техники на месте.</p>
+                    </div>
+                </div>
+                
+                <div class="rt-process-step" data-step="3">
+                    <div class="rt-process-content">
+                        <h3 class="rt-process-title" id="process-title-3">Ремонт</h3>
+                        <p class="rt-process-desc" id="process-desc-3">После согласования стоимости мастер выполнит ремонт быстро и качественно.</p>
+                    </div>
+                </div>
+                
+                <div class="rt-process-step" data-step="4">
+                    <div class="rt-process-content">
+                        <h3 class="rt-process-title" id="process-title-4">Гарантия</h3>
+                        <p class="rt-process-desc" id="process-desc-4">Мы предоставляем гарантию до 12 месяцев на все виды работ и запчасти.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="rt-pricing-section">
+        <div class="rt-container">
+            <h2 class="rt-section-title" id="pricing-title">Цены на услуги</h2>
+            <p class="rt-section-description" id="pricing-desc">Стоимость ремонта бытовой техники</p>
+            
+            <div class="rt-pricing-toggle">
+                <span class="rt-pricing-toggle__label" id="pricing-basic">Базовый ремонт</span>
+                <label class="rt-pricing-toggle__switch">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="rt-pricing-toggle__slider"></span>
+                </label>
+                <span class="rt-pricing-toggle__label" id="pricing-complex">Сложный ремонт</span>
+            </div>
+            
+            <div class="rt-pricing-grid">
+                <!-- Pricing Card 1 -->
+                <div class="rt-pricing-card rt-pricing-card--featured">
+                    <div class="rt-pricing-card__badge" id="pricing-popular">Популярно</div>
+                    <div class="rt-pricing-card__header">
+                        <div class="rt-pricing-card__icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2740/2740948.png" alt="Холодильники">
+                        </div>
+                        <h3 class="rt-pricing-card__title" id="pricing-card-title-1">Ремонт холодильников</h3>
+                    </div>
+                    <div class="rt-pricing-card__price">
+                        <div class="rt-pricing-card__amount basic" id="pricing-amount-1-basic">от 200.000UZS</div>
+                        <div class="rt-pricing-card__amount complex" id="pricing-amount-1-complex">от 700.000UZS</div>
+                    </div>
+                    <ul class="rt-pricing-card__features">
+                        <li id="pricing-feature-1-1">Выезд мастера</li>
+                        <li id="pricing-feature-1-2">Диагностика</li>
+                        <li id="pricing-feature-1-3">Замена комплектующих</li>
+                        <li id="pricing-feature-1-4">Гарантия 6 месяцев</li>
+                    </ul>
+                    <button class="rt-pricing-card__button" id="pricing-button-1">Заказать ремонт</button>
+                </div>
+                
+                <!-- Pricing Card 2 -->
+                <div class="rt-pricing-card">
+                    <div class="rt-pricing-card__header">
+                        <div class="rt-pricing-card__icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1059/1059306.png" alt="Стиральные машины">
+                        </div>
+                        <h3 class="rt-pricing-card__title" id="pricing-card-title-2">Ремонт стиральных машин</h3>
+                    </div>
+                    <div class="rt-pricing-card__price">
+                        <div class="rt-pricing-card__amount basic" id="pricing-amount-2-basic">от 150.000UZS</div>
+                        <div class="rt-pricing-card__amount complex" id="pricing-amount-2-complex">от 550.000UZS</div>
+                    </div>
+                    <ul class="rt-pricing-card__features">
+                        <li id="pricing-feature-2-1">Выезд мастера</li>
+                        <li id="pricing-feature-2-2">Диагностика</li>
+                        <li id="pricing-feature-2-3">Замена комплектующих</li>
+                        <li id="pricing-feature-2-4">Гарантия 6 месяцев</li>
+                    </ul>
+                    <button class="rt-pricing-card__button" id="pricing-button-2">Заказать ремонт</button>
+                </div>
+                
+                <!-- Pricing Card 3 -->
+                <div class="rt-pricing-card">
+                   
+                    <div class="rt-pricing-card__header">
+                        <div class="rt-pricing-card__icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1059/1059306.png" alt="Посудомоечные машины">
+                        </div>
+                        <h3 class="rt-pricing-card__title" id="pricing-card-title-3">Ремонт посудомоечных машин</h3>
+                    </div>
+                    <div class="rt-pricing-card__price">
+                        <div class="rt-pricing-card__amount basic" id="pricing-amount-3-basic">от 150.000UZS</div>
+                        <div class="rt-pricing-card__amount complex" id="pricing-amount-3-complex">от 550.000UZS</div>
+                    </div>
+                    <ul class="rt-pricing-card__features">
+                        <li id="pricing-feature-3-1">Выезд мастера</li>
+                        <li id="pricing-feature-3-2">Диагностика</li>
+                        <li id="pricing-feature-3-3">Замена комплектующих</li>
+                        <li id="pricing-feature-3-4">Гарантия 12 месяцев</li>
+                    </ul>
+                    <button class="rt-pricing-card__button" id="pricing-button-3">Заказать ремонт</button>
+                </div>
+                
+                <!-- Pricing Card 4 -->
+                <div class="rt-pricing-card">
+                    <div class="rt-pricing-card__header">
+                        <div class="rt-pricing-card__icon">
+                            <img src="https://clipart-library.com/2023/Air-Conditioner-Vector-PNG.png" alt="Кондиционеры">
+                        </div>
+                        <h3 class="rt-pricing-card__title" id="pricing-card-title-4">Ремонт кондиционеров</h3>
+                    </div>
+                    <div class="rt-pricing-card__price">
+                        <div class="rt-pricing-card__amount basic" id="pricing-amount-4-basic">от 250.000UZS</div>
+                        <div class="rt-pricing-card__amount complex" id="pricing-amount-4-complex">от 750.000UZS</div>
+                    </div>
+                    <ul class="rt-pricing-card__features">
+                        <li id="pricing-feature-4-1">Выезд мастера</li>
+                        <li id="pricing-feature-4-2">Диагностика</li>
+                        <li id="pricing-feature-4-3">Заправка фреоном</li>
+                        <li id="pricing-feature-4-4">Гарантия 6 месяцев</li>
+                    </ul>
+                    <button class="rt-pricing-card__button" id="pricing-button-4">Заказать ремонт</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="rt-contact-section">
+        <div class="rt-container">
+            <h2 class="rt-section-title" id="contact-title">Контакты</h2>
+            <p class="rt-section-description" id="contact-desc">Свяжитесь с нами для получения консультации</p>
+            
+            <div class="rt-contact-grid">
+                <div class="rt-contact-info">
+                    <div class="rt-contact-card">
+                        <div class="rt-contact-card__icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Телефон">
+                        </div>
+                        <h3 class="rt-contact-card__title" id="contact-phone-title">Телефон</h3>
+                        <div class="rt-contact-card__content">
+                            <a href="tel:+998942159555" class="rt-contact-card__link" id="contact-phone-1">+998 94 215 95 55</a>
+                            <a href="tel:+998901234568" class="rt-contact-card__link" id="contact-phone-2">+998 94 949 70 73</a>
+                        </div>
+                    </div>
+                    
+                    <div class="rt-contact-card">
+                        <div class="rt-contact-card__icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176355.png" alt="Email">
+                        </div>
+                        <h3 class="rt-contact-card__title" id="contact-email-title">Email</h3>
+                        <div class="rt-contact-card__content">
+                            <a href="mailto:info@texnousta.uz" class="rt-contact-card__link" id="contact-email">info@texnousta.uz</a>
+                        </div>
+                    </div>
+                    
+                    <div class="rt-contact-card">
+                        <div class="rt-contact-card__icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" alt="Адрес">
+                        </div>
+                        <h3 class="rt-contact-card__title" id="contact-address-title">Адрес</h3>
+                        <div class="rt-contact-card__content">
+                            <p class="rt-contact-card__text" id="contact-address">г. Ташкент, ул. М.Алиева</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rt-contact-form">
+                    <form id="contactForm" class="rt-form">
+                        <div class="rt-form__group">
+                            <input type="text" id="name" name="name" class="rt-form__input" required>
+                            <label for="name" class="rt-form__label" id="contact-form-name">Ваше имя</label>
+                        </div>
+                        
+                        <div class="rt-form__group">
+                            <input type="tel" id="phone" name="phone" class="rt-form__input" required>
+                            <label for="phone" class="rt-form__label" id="contact-form-phone">Номер телефона</label>
+                        </div>
+                        
+                        <div class="rt-form__group">
+                            <textarea id="message" name="message" class="rt-form__textarea" required></textarea>
+                            <label for="message" class="rt-form__label" id="contact-form-message">Сообщение</label>
+                        </div>
+                        
+                        <button type="submit" class="rt-button rt-button--primary rt-form__submit" id="contact-form-submit">
+                            Отправить заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="rt-map">
+                <iframe src="https://yandex.com/map-widget/v1/?um=constructor%3A81776c7ea05ef43f0ff707a70272a72e9f2c53a2258d2cd4cddff16ffef0b6bd&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="rt-footer">
+        <div class="rt-footer__top">
+            <div class="rt-container rt-footer__container">
+                <div class="rt-footer__brand">
+                    <a href="#" class="rt-logo">
+                        <div class="rt-logo__icon">T</div>
+                        <span>TexnoUsta</span>
+                    </a>
+                    <p class="rt-footer__desc" id="footer-desc">Профессиональный ремонт бытовой техники в Ташкенте и области. Быстро, качественно, с гарантией!</p>
+                </div>
+                <div class="rt-footer__links">
+                    <div class="rt-footer__col">
+                        <h4 class="rt-footer__title" id="footer-nav-title">Навигация</h4>
+                        <ul>
+                            <li><a href="#" class="rt-footer__link" id="footer-link-home">Главная</a></li>
+                            <li><a href="#services" class="rt-footer__link" id="footer-link-services">Услуги</a></li>
+                            <li><a href="#pricing" class="rt-footer__link" id="footer-link-pricing">Цены</a></li>
+                            <li><a href="#process" class="rt-footer__link" id="footer-link-testimonials">Как мы работаем</a></li>
+                            <li><a href="#contact" class="rt-footer__link" id="footer-link-contact">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="rt-footer__col">
+                        <h4 class="rt-footer__title" id="footer-social-title">Соцсети</h4>
+                        <ul>
+                            <li><a href="https://t.me/texnousta_vohit" class="rt-footer__link">Telegram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rt-footer__bottom">
+            <div class="rt-container rt-footer__bottom-container">
+                <span class="rt-footer__copyright" id="footer-copyright">© {{ date_year }} TexnoUsta. Все права защищены.</span>
+                <span class="rt-footer__madeby">Made by <a href="https://t.me/khumoyun_04" target="_blank" class="rt-footer__link">humoyunswe</a></span>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
