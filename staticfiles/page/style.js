@@ -152,8 +152,8 @@
             desc: "Свяжитесь с нами для получения консультации",
             phone: {
                 title: "Телефон",
-                number1: "+998 90 123 45 67",
-                number2: "+998 90 123 45 68"
+                number1: "+998 94 949 70 73",
+                number2: "+998 94 949 70 73"
             },
             email: {
                 title: "Email",
@@ -323,8 +323,8 @@
             desc: "Maslahat olish uchun biz bilan bog'laning",
             phone: {
                 title: "Telefon",
-                number1: "+998 90 123 45 67",
-                number2: "+998 90 123 45 68"
+                number1: "+998 94 949 70 73",
+                number2: "+998 94 949 70 73"
             },
             email: {
                 title: "Email",
