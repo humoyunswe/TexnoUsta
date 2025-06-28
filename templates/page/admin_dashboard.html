@@ -1,0 +1,387 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'static_photos/Logo5.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'page/admin.css' %}">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Админ Страница</h1>
+        <p><a href="/" style="color:#2196f3; text-decoration:underline; font-size:1.1em;">На главную страницу сайта</a></p>
+
+        <!-- View Statistics Section -->
+        <div class="stats-container">
+            <div class="stats-header">
+                <div class="stats-title">Кол-во просмотров</div>
+                <div class="stats-month">{{ current_month }}</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{ monthly_views }}</div>
+                    <div class="stat-label">Общее кол-во просмотров</div>
+                </div>
+            </div>
+
+            <div class="page-stats">
+                <h3 style="margin: 20px 0 10px; font-size: 16px; color: #666;">Просмотров по страницам</h3>
+                {% for stat in page_stats %}
+                <div class="page-stat-item">
+                    <span class="page-name">{{ stat.page|title }}</span>
+                    <span class="page-views">{{ stat.view_count }} просмотров</span>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="phone-clicks-section">
+            <div class="section-header">
+                <h3>Клики по номерам</h3>
+                <span class="total-clicks">{{ phone_clicks|length }} номеров</span>
+            </div>
+            
+            <div class="phone-clicks-grid">
+                {% for click in phone_clicks %}
+                <div class="phone-click-item">
+                    <div class="phone-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59534 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="phone-details">
+                        <div class="phone-number">{{ click.phone }}</div>
+                        <div class="click-count">
+                            <span class="count-number">{{ click.unique_clicks }}</span>
+                            <span class="count-label">{{ click.unique_clicks|pluralize:"клик,клика,кликов" }}</span>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                {% empty %}
+                <div class="no-phone-clicks">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59534 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="#cbd5e1" stroke-width="1.5"/>
+                    </svg>
+                    <p>Нет данных о кликах</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    <!-- Orders Management Section -->
+        <div class="orders-management">
+        <div class="orders-header">
+            <h2>Заявки на ремонт</h2>
+            <div class="orders-actions">
+                <button class="refresh-btn" onclick="refreshOrders()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M1 4V10H7M23 20V14H17" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14L18.36 18.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Обновить
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="orders-filters">
+            <div class="filter-group">
+                <input type="text" id="searchOrders" placeholder="Поиск по имени или телефону..." class="search-input">
+            </div>
+            <div class="filter-group">
+                <select id="statusFilter" class="status-filter">
+                    <option value="">Все статусы</option>
+                    <option value="new">Новые</option>
+                    <option value="in_progress">В работе</option>
+                    <option value="completed">Выполнено</option>
+                    <option value="cancelled">Отменено</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="equipmentFilter" class="equipment-filter">
+                    <option value="">Вся техника</option>
+                    <option value="refrigerator">Холодильники</option>
+                    <option value="conditioner">Кондиционеры</option>
+                    <option value="washing-machine">Стиральные машины</option>
+                    <option value="oven">Духовки/плиты</option>
+                    <option value="dishwasher">Посудомойки</option>
+                    <option value="microwave">Микроволновки</option>
+                    <option value="other">Другое</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Orders Grid -->
+        <div class="orders-grid">
+            {% for order in orders %}
+            <div class="order-card 
+            {% if order.status == 'new' %}new-order
+            {% elif order.status == 'in_progress' %}in_progress
+            {% elif order.status == 'completed' %}completed
+            {% elif order.status == 'cancelled' %}cancelled
+            {% endif %}" 
+            data-order-id="{{ order.id }}">
+                <div class="order-header">
+                    <div class="order-info">
+                        <span class="order-id">#{{ order.id }}</span>
+                        <span class="order-date">{{ order.created_at|date:"d.m.Y H:i" }}</span>
+                    </div>
+                    <div class="order-status">
+                        <select class="status-select" data-order-id="{{ order.id }}">
+                            <option value="new" {% if order.status == 'new' %}selected{% endif %}>Новая</option>
+                            <option value="in_progress" {% if order.status == 'in_progress' %}selected{% endif %}>В работе</option>
+                            <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Выполнено</option>
+                            <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Отменено</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="order-body">
+                    <div class="client-info">
+                        <h3 class="client-name">
+                            <span class="detail-label">От клиента:</span>
+                            {{ order.name }}
+                            {% if order.urgent %}
+                                <span class="urgent-badge">СРОЧНО</span>
+                            {% endif %}
+                        </h3>
+                        <p class="client-phone">
+                            <span class="detail-label">Тел номер:</span>
+                            <a href="tel:{{ order.phone }}" class="phone-link">{{ order.phone }}</a>
+                        </p>
+                    </div>
+
+                    <div class="order-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Техника:</span>
+                            <span class="detail-value">{{ order.service }}</span>
+                        </div>
+                        
+                        {% if order.problem %}
+                        <div class="detail-item">
+                            <span class="detail-label">Проблема:</span>
+                            <span class="detail-value">{{ order.problem }}</span>
+                        </div>
+                        {% endif %}
+                        
+                        {% if order.address %}
+                        <div class="detail-item">
+                            <span class="detail-label">Адрес:</span>
+                            <span class="detail-value">{{ order.address|truncatechars:80 }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="order-footer">
+                    <div class="order-actions">
+                        
+                        <button class="action-btn call-btn" onclick="callClient('{{ order.phone }}')" title="Позвонить">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59534 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="action-btn delete-btn" onclick="deleteOrder({{ order.id }})" title="Удалить">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 6H5H21" stroke="currentColor" stroke-width="2"/>
+                                <path d="M19 6V20C19 21 18 22 17 22H7C6 22 5 21 5 20V6M8 6V4C8 3 9 2 10 2H14C15 2 16 3 16 4V6" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-orders">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#cbd5e1" stroke-width="1.5"/>
+                </svg>
+                <h3>Нет заявок</h3>
+                <p>Заявки на ремонт появятся здесь</p>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Функции для управления заявками
+function refreshOrders() {
+    location.reload();
+}
+
+function viewOrderDetails(orderId) {
+    fetch(`/get-order-details/${orderId}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const modal = document.getElementById('orderDetailsModal');
+                const body = document.getElementById('orderDetailsBody');
+                
+                body.innerHTML = `
+                    <div class="order-detail">
+                        <h4>Заявка #${data.order.id}</h4>
+                        <div class="detail-grid">
+                            <div class="detail-row">
+                                <span class="label">Клиент:</span>
+                                <span class="value">${data.order.name}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Телефон:</span>
+                                <span class="value"><a href="tel:${data.order.phone}">${data.order.phone}</a></span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Техника:</span>
+                                <span class="value">${data.order.equipment_type}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Проблема:</span>
+                                <span class="value">${data.order.problem_description || 'Не указана'}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Адрес:</span>
+                                <span class="value">${data.order.address || 'Не указан'}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Срочность:</span>
+                                <span class="value">${data.order.is_urgent ? 'Срочно (+80.000 UZS)' : 'Обычно'}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Статус:</span>
+                                <span class="value">${data.order.status}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Дата создания:</span>
+                                <span class="value">${data.order.created_at}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">IP адрес:</span>
+                                <span class="value">${data.order.ip_address || 'Не определен'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                modal.classList.add('show');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ошибка при загрузке деталей заявки');
+        });
+}
+
+function closeOrderModal() {
+    document.getElementById('orderDetailsModal').classList.remove('show');
+}
+
+function callClient(phone) {
+    window.location.href = `tel:${phone}`;
+}
+
+function deleteOrder(orderId) {
+    if (confirm('Вы уверены, что хотите удалить эту заявку?')) {
+        fetch(`/delete-order/${orderId}/`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.querySelector(`[data-order-id="${orderId}"]`).remove();
+                showNotification('Заявка удалена', 'success');
+            } else {
+                showNotification('Ошибка при удалении заявки', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification('Ошибка при удалении заявки', 'error');
+        });
+    }
+}
+
+// Фильтрация в реальном времени
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchOrders');
+    const statusFilter = document.getElementById('statusFilter');
+    const equipmentFilter = document.getElementById('equipmentFilter');
+    
+    function filterOrders() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const statusValue = statusFilter.value;
+        const equipmentValue = equipmentFilter.value;
+        
+        const cards = document.querySelectorAll('.order-card');
+        
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            const matchesSearch = text.includes(searchTerm);
+            const matchesStatus = !statusValue || card.querySelector('.status-select').value === statusValue;
+            const matchesEquipment = !equipmentValue || text.includes(equipmentValue);
+            
+            if (matchesSearch && matchesStatus && matchesEquipment) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    searchInput.addEventListener('input', filterOrders);
+    statusFilter.addEventListener('change', filterOrders);
+    equipmentFilter.addEventListener('change', filterOrders);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.status-select').forEach(function(select) {
+        select.addEventListener('change', function() {
+            const orderId = this.getAttribute('data-order-id');
+            const newStatus = this.value;
+
+            fetch(`/update-order-status/${orderId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({status: newStatus})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Можно показать уведомление
+                    // showNotification('Статус обновлен', 'success');
+                } else {
+                    alert('Ошибка при обновлении статуса');
+                }
+            });
+        });
+    });
+});
+
+// Функция для получения CSRF-токена из cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+</body>
+</html>

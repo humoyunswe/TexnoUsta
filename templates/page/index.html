@@ -1,0 +1,883 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   <title>TexnoUsta.uz - Ремонт бытовой техники 24/7</title>
+{% endblock %}
+
+{% block content %}
+    <!-- Главная секция -->
+    <section class="hero" id='hero'>
+        <div class="hero-content">
+            <h1>Ремонт бытовой техники</h1>
+            <p>Быстрый и профессиональный ремонт холодильников, кондиционеров и другой бытовой техники 24/7 по Ташкенту и по регионам тоже.</p>
+            <a href="#" class="hero-btn" onclick="orderService('Консультация')">Вызвать мастера</a>
+        </div>
+
+        <!-- Модальное окно -->
+<div class="order-modal" id="orderModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-icon">📞</div>
+            <h3>Заказать услугу</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <p>Хотите заказать: <strong id="serviceName"></strong>?</p>
+            <p class="modal-subtitle">Мастер свяжется с вами в течение 5 минут</p>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn call-btn" onclick="makeCall()">
+                    📱 Позвонить сейчас
+                </button>
+                <button class="modal-btn cancel-btn" onclick="closeModal()">
+                    Отмена
+                </button>
+            </div>
+            
+            <div class="phone-info">
+                🇺🇿 +998 (94) 215-95-55
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <div class="hero-images">
+            <div class="image-card large">
+                <div class="decorative-element"></div>
+                <div class="decorative-element"></div>
+                <div class="decorative-element"></div>
+                <i class="fas fa-user-tie floating-icon"></i>
+                <div class="image-overlay">
+                    <h3>Профессиональные мастера</h3>
+                    <p>Опытные специалисты по ремонту техники с сертификатами</p>
+                </div>
+            </div>
+            <div class="image-card small-top">
+                <i class="fas fa-tools floating-icon"></i>
+                <div class="image-overlay">
+                    <h3>Качественный ремонт</h3>
+                    <p>Используем оригинальные запчасти</p>
+                </div>
+            </div>
+            <div class="image-card small-bottom">
+                <i class="fas fa-clock floating-icon"></i>
+                <div class="image-overlay">
+                    <h3>Быстрый выезд</h3>
+                    <p>Приезжаем в течение часа</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section class="about" id='about'>
+        <div class="about-content">
+            <h2>Мы работаем с 2024 года</h2>
+            <p class="about-text">
+                В сервисе 3 мастеров разного профиля, очень любящих технику. 
+                Мы понимаем, какая это большая ответственность, и прикладываем максимальные усилия, 
+                чтобы помочь нашим клиентам вернуть их технику к жизни.
+            </p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="150">0</span>
+                    <span class="stat-label">Довольных клиентов</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Мастеров в команде</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="12">0</span>
+                    <span class="stat-label">Лет опыта</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="24">0</span>
+                    <span class="stat-label">Часа в сутки</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Услуги и цены -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="services-header">
+                <h2>Наши услуги и цены</h2>
+                <p>Профессиональный ремонт бытовой техники с гарантией качества</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card animate-left">
+                    <div class="service-content">
+                        <h3>Ремонт холодильников</h3>
+                        <ul class="service-features">
+                            <li>Диагностика и замена компрессора</li>
+                            <li>Устранение утечек хладагента</li>
+                            <li>Ремонт терморегулятора</li>
+                            <li>Замена уплотнительных резинок</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-from">от</span>
+                            <span class="price-value">250.000UZS</span>
+                        </div>
+                        <button class="service-btn" onclick="orderService('Ремонт холодильников')">
+                            <i class="fas fa-phone"></i>
+                            Заказать
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card animate-right">
+                    <div class="service-content">
+                        <h3>Ремонт кондиционеров</h3>
+                        <ul class="service-features">
+                            <li>Чистка и дозаправка фреоном</li>
+                            <li>Замена фильтров и вентиляторов</li>
+                            <li>Ремонт электронных плат</li>
+                            <li>Установка и демонтаж</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-from">от</span>
+                            <span class="price-value">350.000UZS</span>
+                        </div>
+                        <button class="service-btn" onclick="orderService('Ремонт кондиционеров')">
+                            <i class="fas fa-phone"></i>
+                            Заказать
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card animate-left">
+                    <div class="service-content">
+                        <h3>Ремонт стиральных машин</h3>
+                        <ul class="service-features">
+                            <li>Замена подшипников и сальников</li>
+                            <li>Ремонт помпы и ТЭНа</li>
+                            <li>Настройка программ управления</li>
+                            <li>Устранение протечек</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-from">от</span>
+                            <span class="price-value">300.000UZS</span>
+                        </div>
+                        <button class="service-btn" onclick="orderService('Ремонт стиральных машин')">
+                            <i class="fas fa-phone"></i>
+                            Заказать
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card animate-right">
+                    <div class="service-content">
+                        <h3>Ремонт плит и духовок</h3>
+                        <ul class="service-features">
+                            <li>Замена конфорок и ТЭНов</li>
+                            <li>Ремонт газовых горелок</li>
+                            <li>Настройка электронного управления</li>
+                            <li>Замена стекла дверцы</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-from">от</span>
+                            <span class="price-value">200.000UZS</span>
+                        </div>
+                        <button class="service-btn" onclick="orderService('Ремонт плит и духовок')">
+                            <i class="fas fa-phone"></i>
+                            Заказать
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card animate-left">
+                    <div class="service-content">
+                        <h3>Мелкая бытовая техника</h3>
+                        <ul class="service-features">
+                            <li>Микроволновые печи</li>
+                            <li>Пылесосы и утюги</li>
+                            <li>Чайники и кофемашины</li>
+                            <li>Мультиварки и блендеры</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-from">от</span>
+                            <span class="price-value">150.000UZS</span>
+                        </div>
+                        <button class="service-btn" onclick="orderService('Мелкая бытовая техника')">
+                            <i class="fas fa-phone"></i>
+                            Заказать
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="services-note">
+                <p><i class="fas fa-info-circle"></i> Точная стоимость определяется после диагностики. Выезд мастера входит в стоимость ремонта при заказе услуги.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция брендов -->
+<section class="brands" id='brands'>
+    <div class="brands-container">
+        <div class="brands-header">
+            <h2>Ремонтируем технику всех брендов</h2>
+            <p>Работаем с оригинальными запчастями и имеем опыт ремонта любых марок</p>
+        </div>
+        
+        <div class="brands-scroll">
+            <div class="brands-track">
+                <div class="brand-item">Samsung</div>
+                <div class="brand-item">LG</div>
+                <div class="brand-item">Bosch</div>
+                <div class="brand-item">Siemens</div>
+                <div class="brand-item">Whirlpool</div>
+                <div class="brand-item">Electrolux</div>
+                <div class="brand-item">Indesit</div>
+                <div class="brand-item">Ariston</div>
+                <div class="brand-item">Candy</div>
+                <div class="brand-item">Beko</div>
+                <div class="brand-item">Haier</div>
+                <div class="brand-item">Midea</div>
+                <!-- Дублируем для бесконечности -->
+                <div class="brand-item">Samsung</div>
+                <div class="brand-item">LG</div>
+                <div class="brand-item">Bosch</div>
+                <div class="brand-item">Siemens</div>
+                <div class="brand-item">Whirlpool</div>
+                <div class="brand-item">Electrolux</div>
+                <div class="brand-item">Indesit</div>
+                <div class="brand-item">Ariston</div>
+                <div class="brand-item">Candy</div>
+                <div class="brand-item">Beko</div>
+                <div class="brand-item">Haier</div>
+                <div class="brand-item">Midea</div>
+            </div>
+        </div>
+
+        <div class="brands-scroll reverse">
+            <div class="brands-track">
+                <div class="brand-item">Zanussi</div>
+                <div class="brand-item">Hotpoint</div>
+                <div class="brand-item">Liebherr</div>
+                <div class="brand-item">Miele</div>
+                <div class="brand-item">AEG</div>
+                <div class="brand-item">Gorenje</div>
+                <div class="brand-item">Hansa</div>
+                <div class="brand-item">Kaiser</div>
+                <div class="brand-item">Smeg</div>
+                <div class="brand-item">Vestel</div>
+                <div class="brand-item">Sharp</div>
+                <div class="brand-item">Panasonic</div>
+                <!-- Дублируем для бесконечности -->
+                <div class="brand-item">Zanussi</div>
+                <div class="brand-item">Hotpoint</div>
+                <div class="brand-item">Liebherr</div>
+                <div class="brand-item">Miele</div>
+                <div class="brand-item">AEG</div>
+                <div class="brand-item">Gorenje</div>
+                <div class="brand-item">Hansa</div>
+                <div class="brand-item">Kaiser</div>
+                <div class="brand-item">Smeg</div>
+                <div class="brand-item">Vestel</div>
+                <div class="brand-item">Sharp</div>
+                <div class="brand-item">Panasonic</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция портфолио -->
+<section class="portfolio">
+    <div class="portfolio-container">
+        <div class="portfolio-header">
+            <h2>Наша работа в деталях</h2>
+            <p>Обслуживание всех видов бытовой техники</p>
+        </div>
+
+        
+        <div class="portfolio-grid">
+
+             <div class="portfolio-item animate-rotate">
+                <div class="portfolio-card">
+                    <img src="{% static 'static_photos/8.jpg' %}" alt="Фирменная кепка">
+                </div>
+            </div>
+
+            <div class="portfolio-item animate-rotate">
+                <div class="portfolio-card">
+                    <img src="{% static 'static_photos/3.png' %}" alt="Фирменная кепка">
+                </div>
+            </div>
+            <div class="portfolio-item animate-rotate">
+                <div class="portfolio-card">
+                    <img src="{% static 'static_photos/5.jpg' %}" alt="Фирменная футболка">
+                </div>
+            </div>
+            
+            <div class="portfolio-item animate-rotate">
+                <div class="portfolio-card">
+                    <img src="{% static 'static_photos/6.jpg' %}" alt="Фирменная кепка">
+                </div>
+            </div>
+            
+            <div class="portfolio-item animate-rotate">
+                <div class="portfolio-card">
+                    <img src="{% static 'static_photos/7.jpg' %}" alt="Фирменная кепка">
+                </div>
+            </div>
+
+            
+            <div class="portfolio-item animate-rotate">
+                <div class="portfolio-card">
+                    <img src="{% static 'static_photos/8.jpg' %}" alt="Фирменная кепка">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция "Как мы работаем" -->
+<section class="workflow" id='workflow'>
+    <div class="workflow-container">
+        <div class="workflow-header">
+            <h2>Как мы работаем</h2>
+            <p>Простой и понятный процесс от звонка до гарантии</p>
+        </div>
+        
+        <div class="workflow-timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="workflow-step step-left" data-step="1">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="step-info">
+                        <h3>Принимаем заявку</h3>
+                        <p>Звоните или оставляйте заявку на сайте. Консультируем по телефону и записываем на удобное время</p>
+                        <span class="step-time">5 минут</span>
+                    </div>
+                </div>
+                <div class="step-number">01</div>
+            </div>
+
+            <div class="workflow-step step-right" data-step="2">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="step-info">
+                        <h3>Выезжаем к вам</h3>
+                        <p>Мастер приезжает в указанное время с инструментами и запчастями. Проводит диагностику техники</p>
+                        <span class="step-time">в течение часа</span>
+                    </div>
+                </div>
+                <div class="step-number">02</div>
+            </div>
+
+            <div class="workflow-step step-left" data-step="3">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="step-info">
+                        <h3>Диагностика</h3>
+                        <p>Определяем причину поломки, составляем смету ремонта и согласовываем стоимость работ</p>
+                        <span class="step-time">15-30 минут</span>
+                    </div>
+                </div>
+                <div class="step-number">03</div>
+            </div>
+
+            <div class="workflow-step step-right" data-step="4">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="step-info">
+                        <h3>Ремонт техники</h3>
+                        <p>Выполняем ремонт с использованием оригинальных запчастей. Соблюдаем технологию и стандарты</p>
+                        <span class="step-time">30-120 минут</span>
+                    </div>
+                </div>
+                <div class="step-number">04</div>
+            </div>
+
+            <div class="workflow-step step-left" data-step="5">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="step-info">
+                        <h3>Тестирование</h3>
+                        <p>Проверяем работу техники, тестируем все функции и убеждаемся в качестве выполненного ремонта</p>
+                        <span class="step-time">10-15 минут</span>
+                    </div>
+                </div>
+                <div class="step-number">05</div>
+            </div>
+
+            <div class="workflow-step step-right" data-step="6">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="step-info">
+                        <h3>Гарантия</h3>
+                        <p>Выдаем гарантию на выполненные работы и запчасти. Остаемся на связи для поддержки</p>
+                        <span class="step-time">до 12 месяцев</span>
+                    </div>
+                </div>
+                <div class="step-number">06</div>
+            </div>
+        </div>
+
+        <div class="workflow-cta">
+            <p>Готовы начать? Звоните прямо сейчас!</p>
+            <button class="cta-btn" onclick="orderService('Консультация')">
+                <i class="fas fa-phone"></i>
+                Вызвать мастера
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Секция "Почему выбирают нас" -->
+<section class="advantages" id='advantages'>
+    <div class="advantages-container">
+        <div class="advantages-header">
+            <span class="section-badge">Преимущества</span>
+            <h2>Почему выбирают нас</h2>
+            <p>Профессиональный подход и проверенное качество уже 1 лет</p>
+        </div>
+        
+        <div class="advantages-grid">
+            <div class="advantage-item" data-index="1">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <div class="advantage-content">
+                    <h3>1 лет опыта</h3>
+                    <p>Работаем с 2024 года. Накопили экспертизу в ремонте всех видов бытовой техники</p>
+                </div>
+                <div class="advantage-number">01</div>
+            </div>
+
+            <div class="advantage-item" data-index="2">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="advantage-content">
+                    <h3>Гарантия до 12 месяцев</h3>
+                    <p>Предоставляем официальную гарантию на все виды работ и установленные запчасти</p>
+                </div>
+                <div class="advantage-number">02</div>
+            </div>
+
+            <div class="advantage-item" data-index="3">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="advantage-content">
+                    <h3>Выезд в течение часа</h3>
+                    <p>Быстрое реагирование на заявки. Мастер приедет в удобное для вас время</p>
+                </div>
+                <div class="advantage-number">03</div>
+            </div>
+
+            <div class="advantage-item" data-index="4">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7ZM24 21V19C23.9993 18.1137 23.7044 17.2528 23.1614 16.5523C22.6184 15.8519 21.8581 15.3516 21 15.13M17 3.13C17.8604 3.35031 18.6227 3.85071 19.1667 4.55232C19.7107 5.25392 20.0063 6.11683 20.0063 7.005C20.0063 7.89318 19.7107 8.75608 19.1667 9.45769C18.6227 10.1593 17.8604 10.6597 17 10.88" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="advantage-content">
+                    <h3>3 сертифицированных мастеров</h3>
+                    <p>Квалифицированные специалисты с официальными сертификатами и большим опытом</p>
+                </div>
+                <div class="advantage-number">04</div>
+            </div>
+
+            <div class="advantage-item" data-index="5">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M7.5 4.21L12 6.81L16.5 4.21M12 22.08V12.08" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="advantage-content">
+                    <h3>Оригинальные запчасти</h3>
+                    <p>Используем только качественные комплектующие от официальных поставщиков</p>
+                </div>
+                <div class="advantage-number">05</div>
+            </div>
+
+            <div class="advantage-item" data-index="6">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2V22M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6312 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6312 13.6815 18 14.5717 18 15.5C18 16.4283 17.6312 17.3185 16.9749 17.9749C16.3185 18.6312 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="advantage-content">
+                    <h3>Фиксированные цены</h3>
+                    <p>Стоимость ремонта не изменится после диагностики. Без скрытых доплат</p>
+                </div>
+                <div class="advantage-number">06</div>
+            </div>
+        </div>
+
+        <div class="advantages-stats">
+            <div class="stat-item">
+                <div class="stat-value">150+</div>
+                <div class="stat-label">Выполненных ремонтов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">98%</div>
+                <div class="stat-label">Довольных клиентов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Круглосуточно</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1ч</div>
+                <div class="stat-label">Среднее время выезда</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция FAQ -->
+<section class="faq" id='faq'>
+    <div class="faq-container">
+        <div class="faq-header">
+            <span class="section-badge">FAQ</span>
+            <h2>Часто задаваемые вопросы</h2>
+            <p>Ответы на популярные вопросы о ремонте бытовой техники</p>
+        </div>
+        
+        <div class="faq-list">
+            <div class="faq-item" data-index="1">
+                <div class="faq-question">
+                    <h3>Сколько стоит ремонт моей техники?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Стоимость зависит от типа техники и характера поломки. Окончательная цена определяется после бесплатной диагностики. Средние цены: холодильники от 250.000UZS, стиральные машины от  300.000UZS, кондиционеры от  350.000UZS.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="2">
+                <div class="faq-question">
+                    <h3>Какую гарантию вы предоставляете на ремонт?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>На все виды ремонта предоставляем официальную гарантию от 3 до 12 месяцев в зависимости от сложности работ. На установленные запчасти действует гарантия производителя. Гарантийный талон выдается на руки.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="3">
+                <div class="faq-question">
+                    <h3>Как быстро мастер приедет на вызов?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>В рабочее время мастер приезжает в течение 1-2 часов. При срочном вызове — в течение часа за дополнительную плату  80.000UZS. Точное время согласовывается при оформлении заявки.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="4">
+                <div class="faq-question">
+                    <h3>Есть ли запчасти в наличии у мастера?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>У наших мастеров есть базовый набор расходных материалов и наиболее популярных запчастей. Для сложного ремонта запчасти заказываем у официальных поставщиков, доставка занимает 1-3 дня.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="5">
+                <div class="faq-question">
+                    <h3>Работаете ли вы в выходные и праздники?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, мы работаем 24/7 без выходных и праздников. В ночное время и праздничные дни действует наценка 30% к базовой стоимости услуг. Заявки принимаем круглосуточно.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="6">
+                <div class="faq-question">
+                    <h3>Диагностика техники платная или бесплатная?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Диагностика полностью бесплатная при условии заказа ремонта. Если от ремонта отказываетесь — стоимость диагностики  80.000UZS. Выезд мастера всегда бесплатный по Москве и области.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="7">
+                <div class="faq-question">
+                    <h3>Что если техника не подлежит ремонту?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Мастер честно сообщит, если ремонт нецелесообразен. В таких случаях платите только за диагностику  80.000UZS. Можем предложить утилизацию старой техники и помочь с выбором новой.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="8">
+                <div class="faq-question">
+                    <h3>Как происходит оплата за ремонт?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Оплата производится после завершения работ и проверки техники. Принимаем наличные и банковские карты. Предоплата не требуется.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-index="10">
+                <div class="faq-question">
+                    <h3>Сколько времени занимает ремонт?</h3>
+                    <div class="faq-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Простой ремонт выполняется в день обращения за 30-120 минут. Сложные случаи могут потребовать 1-3 дня в зависимости от наличия запчастей. Точные сроки сообщаем после диагностики.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-contact">
+            <div class="faq-contact-content">
+                <h3>Не нашли ответ на свой вопрос?</h3>
+                <p>Позвоните нам или оставьте заявку — ответим на любые вопросы</p>
+                <div class="faq-contact-buttons">
+                    <a href="tel:+998942159555" class="faq-btn primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59534 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Позвонить
+                    </a>
+                   <a href="https://t.me/texnousta_admin" class="faq-btn secondary" target="_blank" rel="noopener noreferrer">
+                        <!-- Иконка Телефона -->
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59534 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Написать
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция наших работ -->
+<section class="portfolio-works" id=portfolio-works>
+    <div class="portfolio-works-container">
+        <div class="portfolio-works-header">
+            <span class="section-badge">Портфолио</span>
+            <h2>Наши работы</h2>
+            <p>Пример нашей работы</p>
+        </div>
+        
+        <div class="work-showcase">
+            <div class="work-item-single">
+                <div class="work-image">
+                    <img src="{% static 'static_photos/work.jpeg' %}" alt="Профессиональный ремонт холодильника">
+                </div>
+                
+                </div>
+            </div>
+        </div>
+
+    
+    </div>
+</section>
+
+<!-- Секция контактов и формы заказа -->
+<section class="contacts" id='contacts'>
+    <div class="contacts-container">
+        <div class="contacts-header">
+            <span class="section-badge">Контакты</span>
+            <h2>Свяжитесь с нами</h2>
+            <p>Оставьте заявку и мы перезвоним в течение 1 час</p>
+        </div>
+        
+        <div class="contacts-content">
+            <!-- Форма заказа -->
+            <div class="contact-form-section">
+                <div class="form-container">
+                    <h3>Заказать ремонт</h3>
+                    <form class="contact-form" id="repairForm">
+                        <div class="form-group">
+                            <label for="clientName">Ваше имя</label>
+                            <input type="text" id="clientName" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="clientPhone">Телефон</label>
+                            <input type="tel" id="clientPhone" name="phone" placeholder="+998 (94) ___-__-__" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="serviceType">Тип техники</label>
+                            <select id="serviceType" name="service" required>
+                                <option value="">Выберите технику</option>
+                                <option value="refrigerator">Холодильник</option>
+                                <option value="conditioner">Кондиционер</option>
+                                <option value="washing-machine">Стиральная машина</option>
+                                <option value="oven">Духовка/плита</option>
+                                <option value="dishwasher">Посудомоечная машина</option>
+                                <option value="microwave">Микроволновка</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="problemDescription">Описание проблемы</label>
+                            <textarea id="problemDescription" name="problem" rows="4" placeholder="Опишите что случилось с техникой..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="clientAddress">Адрес</label>
+                            <input type="text" id="clientAddress" name="address" placeholder="Ташкент, улица, дом, квартира">
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="urgent" name="urgent">
+                            <label for="urgent">Срочный вызов (+80.000UZS)</label>
+                        </div>
+                        
+                        <button type="submit" class="form-submit-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Заказать ремонт
+                        </button>
+                        
+                        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Контактная информация и карта -->
+            <div class="contact-info-section">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59534 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Телефоны</h4>
+                            <p><a href="tel:+998942159555">+998 (94) 215-95-55</a></p>
+                            <p><a href="tel:+998931625151">+998 (93) 162-51-51</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Адрес</h4>
+                            <p>Ташкент обл., ул. Юксалиш, 7<br>г. Алмалык</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Режим работы</h4>
+                            <p>Круглосуточно 24/7<br>Без выходных и праздников</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telegram</h4>
+                            <p><a href="https://t.me/texnousta_admin" target="_blank">@texnousta_admin</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Яндекс карта -->
+                <div class="map-container">
+                    <div class="map-wrapper">
+
+                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1f0f6e3480a89412eb4223f7451a16e8ed72b5f5e9e9077c75e22bd80117aa29&amp;source=constructor" 
+                        width="100%" 
+                        height="300" 
+                        frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock %}

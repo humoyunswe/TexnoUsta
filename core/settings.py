@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'page.apps.PageConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,12 +75,27 @@ WSGI_APPLICATION = 'core.wsgi.app'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'neondb',  # из конца URL
+        'USER': 'neondb_owner',  # имя пользователя
+        'PASSWORD': 'npg_YAm9quU1lSDR',  # пароль
+        'HOST': 'ep-steep-hill-a914fv7i-pooler.gwc.azure.neon.tech',  # хост
+        'PORT': '5432',  # порт
+        'OPTIONS': {
+            'sslmode': 'require',  # для Neon обязательно
+        },
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -111,6 +127,9 @@ TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 
 USE_TZ = True
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
 
 
 # Static files (CSS, JavaScript, Images)
