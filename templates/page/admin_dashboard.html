@@ -10,6 +10,7 @@
     <title>Admin Dashboard</title>
 </head>
 <body>
+    {% csrf_token %}
     <div class="container">
         <h1>Админ Страница</h1>
         <p><a href="/" style="color:#2196f3; text-decoration:underline; font-size:1.1em;">На главную страницу сайта</a></p>
@@ -71,6 +72,25 @@
                     </svg>
                     <p>Нет данных о кликах</p>
                 </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="callmaster-requests-section">
+            <div class="section-header">
+                <h3>Заявки с формы "Вызвать мастера"</h3>
+                <span class="total-clicks">{{ callmaster_requests|length }} заявок</span>
+            </div>
+            <div class="callmaster-requests-grid">
+                {% for req in callmaster_requests %}
+                <div class="callmaster-request-item" data-request-id="{{ req.id }}" style="display:flex;align-items:center;gap:18px;padding:12px 0;border-bottom:1px solid #f1f1f1;">
+                    <div style="font-size:18px;font-weight:500;min-width:120px;">{{ req.phone }}</div>
+                    <div style="color:#888;font-size:14px;min-width:120px;">{{ req.created_at|date:"d.m.Y H:i" }}</div>
+                    <div style="color:#bbb;font-size:13px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ req.ip_address }}</div>
+                    <div style="color:#bbb;font-size:13px;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ req.user_agent }}</div>
+                    <button onclick="deleteCallMasterRequest({{ req.id }})" style="background:#ff4d4f;color:#fff;border:none;border-radius:8px;padding:4px 14px;font-size:14px;cursor:pointer;">Удалить</button>
+                </div>
+                {% empty %}
+                <div style="color:#aaa;padding:16px 0;">Нет заявок</div>
                 {% endfor %}
             </div>
         </div>
@@ -381,6 +401,23 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function deleteCallMasterRequest(requestId) {
+    if (confirm('Удалить заявку?')) {
+        fetch(`/delete-callmaster-request/${requestId}/`, {
+            method: 'DELETE',
+            headers: { 'X-CSRFToken': getCookie('csrftoken') }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.querySelector(`[data-request-id="${requestId}"]`).remove();
+            } else {
+                alert('Ошибка при удалении');
+            }
+        });
+    }
 }
 </script>
 </body>

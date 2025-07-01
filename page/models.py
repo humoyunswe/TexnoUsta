@@ -60,3 +60,12 @@ class PhoneClick(models.Model):
 
     def __str__(self):
         return f"{self.phone} — {self.ip_address} — {self.day}"
+
+class CallMasterRequest(models.Model):
+    phone = models.CharField(max_length=32)
+    created_at = models.DateTimeField(auto_now_add=True)
+    ip_address = models.CharField(max_length=64, blank=True)
+    user_agent = models.CharField(max_length=256, blank=True)
+
+    def __str__(self):
+        return f"{self.phone} ({self.created_at:%d.%m.%Y %H:%M})"

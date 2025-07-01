@@ -4,10 +4,12 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max, Count
 
-from .models import PhoneClick, ViewCounter, RepairOrder
+from .models import PhoneClick, ViewCounter, RepairOrder, CallMasterRequest
 
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+
+from .forms import CallMasterForm
 
 
 
@@ -17,24 +19,21 @@ def track_view(request, page_name):
 
 def index(request):
     track_view(request, 'index')
+    callmaster_form = CallMasterForm()
     if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        service = request.POST.get('service')
-        problem = request.POST.get('problem', '')
-        address = request.POST.get('address', '')
-        urgent = bool(request.POST.get('urgent'))
-        RepairOrder.objects.create(
-            name=name,
-            phone=phone,
-            service=service,
-            problem=problem,
-            address=address,
-            urgent=urgent
-        )
-        return redirect('index')
+        callmaster_form = CallMasterForm(request.POST)
+        if callmaster_form.is_valid():
+            phone = callmaster_form.cleaned_data['phone']
+            ip = request.META.get('REMOTE_ADDR')
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            CallMasterRequest.objects.create(phone=phone, ip_address=ip, user_agent=user_agent)
+            request.session['client_phone'] = phone
+            return redirect('thank_you')
     date_year = timezone.now().year
-    return render(request, 'page/index.html', {'date_year': date_year})
+    return render(request, 'page/index.html', {
+        'date_year': date_year,
+        'callmaster_form': callmaster_form,
+    })
 
 
 @login_required(login_url='users:login')
@@ -50,13 +49,15 @@ def admin_dashboard(request):
     ).order_by('-unique_clicks')
     
     orders = RepairOrder.objects.order_by('-created_at')
+    callmaster_requests = CallMasterRequest.objects.order_by('-created_at')
     
     context = {
         'monthly_views': monthly_views,
         'page_stats': page_stats,
         'phone_clicks': phone_clicks,
         'current_month': current_month.strftime('%B %Y'),
-        'orders': orders
+        'orders': orders,
+        'callmaster_requests': callmaster_requests,
     }
     return render(request, 'page/admin_dashboard.html', context)
 
@@ -106,4 +107,21 @@ def phone_click(request):
         )
         return JsonResponse({'success': True})
     return JsonResponse({'success': False})
+
+
+def thank_you(request):
+    phone = request.session.get('client_phone', None)
+    return render(request, 'page/thank_you.html', {'phone': phone})
+
+@csrf_exempt
+def delete_callmaster_request(request, request_id):
+    if request.method == 'DELETE':
+        try:
+            from .models import CallMasterRequest
+            req = CallMasterRequest.objects.get(id=request_id)
+            req.delete()
+            return JsonResponse({'success': True})
+        except CallMasterRequest.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Not found'})
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
 

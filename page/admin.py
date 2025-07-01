@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import RepairOrder, ViewCounter, PhoneClick
+from .models import RepairOrder, ViewCounter, PhoneClick, CallMasterRequest
 
 @admin.register(RepairOrder)
 class RepairOrderAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class RepairOrderAdmin(admin.ModelAdmin):
 
 admin.site.register(PhoneClick)
 admin.site.register(ViewCounter)
+admin.site.register(CallMasterRequest)

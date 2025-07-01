@@ -114,19 +114,19 @@ closeModal();
 }
 });
 
-// Плавный скролл для навигации
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+// // Плавный скролл для навигации
+// document.querySelectorAll('.nav-menu a').forEach(link => {
+//     link.addEventListener('click', function(e) {
+//         e.preventDefault();
+//         const target = document.querySelector(this.getAttribute('href'));
+//         if (target) {
+//             target.scrollIntoView({
+//                 behavior: 'smooth',
+//                 block: 'start'
+//             });
+//         }
+//     });
+// });
 
 // Плавный скролл для навигации
 document.querySelectorAll('.footer-links a').forEach(link => {
