@@ -56,6 +56,53 @@
 {% endblock %}
 
 {% block content %}
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    
+    .problems-section { max-width: 1200px; margin: 0 auto; }
+    .problems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 40px; }
+    
+    .card { 
+        background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); 
+        transform: translateX(-100px); opacity: 0; transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .card.animate { transform: translateX(0); opacity: 1; }
+    
+    .card-header { display: flex; align-items: center; margin-bottom: 16px; }
+    .icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 16px; font-size: 24px; }
+    .icon.freeze { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .icon.power { background: linear-gradient(135deg, #ef4444, #dc2626); }
+    .icon.noise { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .icon.leak { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .icon.ice { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+    .icon.shock { background: linear-gradient(135deg, #eab308, #ca8a04); }
+    
+    .card h3 { font-size: 20px; font-weight: 600; color: #1f2937; letter-spacing: -0.01em; }
+    .card ul { list-style: none; margin: 16px 0 20px; }
+    .card li { color: #6b7280; margin-bottom: 8px; padding-left: 12px; position: relative; font-size: 14px; }
+    .card li:before { content: '•'; color: #3b82f6; position: absolute; left: 0; }
+    
+    .buttons { display: flex; gap: 12px; }
+    .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .btn-primary { background: #3b82f6; color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    
+    .section-title { text-align: center; font-size: 32px; font-weight: 700; color: #1f2937; }
+
+    @media (max-width: 768px) {
+        .problems-section {
+            padding: 0 16px;
+        }
+        .problems-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .card {
+            padding: 16px;
+        }
+    }
+</style>
     
 
     <!-- Google Tag Manager (noscript) -->
@@ -66,12 +113,9 @@
     <!-- Главная секция -->
     <section class="hero" id='hero'>
         <div class="hero-content">
-           <h1>Ремонт</h1>
+           <h1>Ремонт  холодильников</h1>
            
-            <h1>
-                <span id="headline-prefix"> </span> <span id="headline-typed"></span>
-            </h1>
-            <p>Быстрый и профессиональный ремонт холодильников, кондиционеров и другой бытовой техники 24/7 по Ташкенту и по регионам тоже.</p>
+            <p>Быстрый ремонт холодильников в 24/7 по Ташкенту и по регионам тоже.</p>
             <!-- Вызвать мастера форма -->
                 <div style="width:100%;padding:32px 0 12px 0;display:flex;flex-direction:column;justify-content:center;align-items:center;">
                     <form method="post" style="display:flex;align-items:center;gap:4px;max-width:480px;width:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);padding:6px;">
@@ -98,10 +142,37 @@
                 </div>
         </div>
 
-     
+        <!-- Модальное окно -->
+<div class="order-modal" id="orderModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-icon">📞</div>
+            <h3>Заказать услугу</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <p>Хотите заказать: <strong id="serviceName"></strong>?</p>
+            <p class="modal-subtitle">Мастер свяжется с вами в течение 5 минут</p>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn call-btn" onclick="makeCall()">
+                    📱 Позвонить сейчас
+                </button>
+                <button class="modal-btn cancel-btn" onclick="closeModal()">
+                    Отмена
+                </button>
+            </div>
+            
+            <div class="phone-info">
+                🇺🇿 +998 (94) 215-95-55
+            </div>
+        </div>
+    </div>
+</div>
         
         <div class="hero-images">
-            <div class="image-card large">
+            <div class="image-card large2">
                 <div class="decorative-element"></div>
                 <div class="decorative-element"></div>
                 <div class="decorative-element"></div>
@@ -118,7 +189,7 @@
                     <p>Используем оригинальные запчасти</p>
                 </div>
             </div>
-            <div class="image-card small-bottom">
+            <div class="image-card small-bottom2">
                 <i class="fas fa-clock floating-icon"></i>
                 <div class="image-overlay">
                     <h3>Быстрый выезд</h3>
@@ -128,58 +199,122 @@
         </div>
     </section>
 
-    <!-- Секция портфолио -->
-<section class="portfolio">
-    <div class="portfolio-container">
-        <div class="portfolio-header">
-            <h2>Наша работа в деталях</h2>
-            <p>Обслуживание всех видов бытовой техники</p>
+    <section class="problems-section" id="problems">
+    <div class="problems-section" id="problems">
+        <div class="problems-header">
+            <h2 class="section-title">Частые проблемы холодильников</h2>
         </div>
-
-        
-        <div class="portfolio-grid">
-            <div class="portfolio-item animate-rotate">
-                <a href="{% url 'refrigerator' %}">
-                <div class="portfolio-card">
-                    <img src="{% static 'static_photos/5.jpg' %}" alt="Фирменная футболка">
+        <div class="problems-grid">
+            <!-- Не морозит -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon freeze">❄️</div>
+                    <h3>Не морозит</h3>
                 </div>
-                </a>
-            </div>
-
-             <div class="portfolio-item animate-rotate">
-                <div class="portfolio-card">
-                    <img src="{% static 'static_photos/8.jpg' %}" alt="Фирменная кепка">
-                </div>
-            </div>
-
-            <div class="portfolio-item animate-rotate">
-                <div class="portfolio-card">
-                    <img src="{% static 'static_photos/3.png' %}" alt="Фирменная кепка">
+                <ul>
+                    <li>Замена термостата</li>
+                    <li>Заправка фреоном</li>
+                    <li>Ремонт модуля управления</li>
+                    <li>Замена мотор-компрессора</li>
+                    <li>Ремонт испарителя</li>
+                </ul>
+                <div class="buttons">
+                    <a href="tel:+998942159555" class="btn btn-primary">📞 Позвонить</a>
                 </div>
             </div>
-            
-            
-            <div class="portfolio-item animate-rotate">
-                <div class="portfolio-card">
-                    <img src="{% static 'static_photos/6.jpg' %}" alt="Фирменная кепка">
+    
+            <!-- Не включается -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon power">⚡</div>
+                    <h3>Не включается</h3>
+                </div>
+                <ul>
+                    <li>Замена термостата</li>
+                    <li>Замена мотор-компрессора</li>
+                    <li>Мелкий ремонт</li>
+                    <li>Ремонт платы управления</li>
+                    <li>Замена реле</li>
+                </ul>
+                <div class="buttons">
+                    <a href="tel:+998942159555" class="btn btn-primary">📞 Позвонить</a>
                 </div>
             </div>
-            
-            <div class="portfolio-item animate-rotate">
-                <div class="portfolio-card">
-                    <img src="{% static 'static_photos/7.jpg' %}" alt="Фирменная кепка">
+    
+            <!-- Гудит или вибрирует -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon noise">🔊</div>
+                    <h3>Гудит или вибрирует</h3>
+                </div>
+                <ul>
+                    <li>Замена мотор-компрессора</li>
+                    <li>Замена реле</li>
+                    <li>Замена вентилятора обдува</li>
+                    <li>Регулировка ножек</li>
+                    <li>Замена амортизаторов</li>
+                </ul>
+                <div class="buttons">
+                    <a href="tel:+998942159555" class="btn btn-primary">📞 Позвонить</a>
                 </div>
             </div>
-
-            
-            <div class="portfolio-item animate-rotate">
-                <div class="portfolio-card">
-                    <img src="{% static 'static_photos/8.jpg' %}" alt="Фирменная кепка">
+    
+            <!-- Протекает -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon leak">💧</div>
+                    <h3>Протекает</h3>
+                </div>
+                <ul>
+                    <li>Замена фильтра осушителя</li>
+                    <li>Замена трубопровода</li>
+                    <li>Заправка фреоном</li>
+                    <li>Прочистка дренажной системы</li>
+                    <li>Замена уплотнителей</li>
+                </ul>
+                <div class="buttons">
+                    <a href="tel:+998942159555" class="btn btn-primary">📞 Позвонить</a>
+                </div>
+            </div>
+    
+            <!-- Покрывается льдом -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon ice">🧊</div>
+                    <h3>Покрывается льдом</h3>
+                </div>
+                <ul>
+                    <li>Замена термостата</li>
+                    <li>Устранение утечки фреона</li>
+                    <li>Замена нагревателя оттайки</li>
+                    <li>Замена таймера</li>
+                    <li>Замена дефростера</li>
+                </ul>
+                <div class="buttons">
+                    <a href="tel:+998942159555" class="btn btn-primary">📞 Позвонить</a>
+                </div>
+            </div>
+    
+            <!-- Бьет током -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon shock">⚡</div>
+                    <h3>Бьет током</h3>
+                </div>
+                <ul>
+                    <li>Замена реле</li>
+                    <li>Мелкий ремонт</li>
+                    <li>Проверка заземления</li>
+                    <li>Замена проводки</li>
+                    <li>Ремонт изоляции</li>
+                </ul>
+                <div class="buttons">
+                    <a href="tel:+998942159555" class="btn btn-primary">📞 Позвонить</a>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    </section>
 
     <!-- О нас -->
     <section class="about" id='about'>
@@ -400,7 +535,6 @@
 </section>
 
 
-
 <!-- Секция "Как мы работаем" -->
 <section class="workflow" id='workflow'>
     <div class="workflow-container">
@@ -499,7 +633,7 @@
 
         <div class="workflow-cta">
             <p>Готовы начать? Звоните прямо сейчас!</p>
-            <button class="cta-btn" onclick="makeCall()">
+            <button class="cta-btn" onclick="orderService('Консультация')">
                 <i class="fas fa-phone"></i>
                 Вызвать мастера
             </button>
@@ -926,7 +1060,7 @@
                             </div>
                         </div>
                     </div>
-                
+                </div>
                 
                 <!-- Яндекс карта -->
                 <div class="map-container">
@@ -943,63 +1077,7 @@
     </div>
 </section>
 
-<style>
-#headline-typed {
-  display: inline-block;
-  min-width: 180px;
-  border-right: 4px solid #fc7703;
-  white-space: nowrap;
-  overflow: hidden;
-  vertical-align: bottom;
-  font-family: inherit;
-  font-weight: 2rem;
-  font-size: inherit;
-  letter-spacing: -0.01em;
-}
-@media (max-width: 600px) {
-  #headline-typed { min-width: 100px; }
-}
-</style>
 
-<script>
-// Анимированный typing-эффект для заголовка
-const words = [
-    'бытовой техники',
-    'кондиционеров',
-    'стиральных машин'
-];
-const typedSpan = document.getElementById('headline-typed');
-let wordIndex = 0;
-let charIndex = 0;
-let typing = true;
-
-function typeWord() {
-    if (charIndex < words[wordIndex].length) {
-        typedSpan.textContent += words[wordIndex][charIndex];
-        charIndex++;
-        setTimeout(typeWord, 70);
-    } else {
-        typing = false;
-        setTimeout(eraseWord, 1200);
-    }
-}
-
-function eraseWord() {
-    if (charIndex > 0) {
-        typedSpan.textContent = words[wordIndex].slice(0, charIndex - 1);
-        charIndex--;
-        setTimeout(eraseWord, 35);
-    } else {
-        wordIndex = (wordIndex + 1) % words.length;
-        typing = true;
-        setTimeout(typeWord, 300);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(typeWord, 400);
-});
-</script>
 
 <script>
     // Добавляем плавную анимацию при загрузке
@@ -1036,6 +1114,50 @@ document.addEventListener('DOMContentLoaded', function() {
         this.parentElement.parentElement.style.borderColor = 'rgba(255,255,255,0.2)';
     });
     </script>
+
+    <script>
+        // Отслеживаем заголовок секции
+        const problemsHeader = document.querySelector('.section-title');
+        const headerObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    headerObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        if (problemsHeader) {
+            problemsHeader.style.opacity = '0';
+            problemsHeader.style.transform = 'translateY(20px)';
+            problemsHeader.style.transition = 'all 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            headerObserver.observe(problemsHeader);
+        }
+        
+        // Анимация карточек проблем с задержкой
+        const problemCards = document.querySelectorAll('.card');
+        const cardsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 150);
+                    cardsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        problemCards.forEach(card => {
+            cardsObserver.observe(card);
+        });
+        </script>
 
     
 {% endblock %}

@@ -172,6 +172,8 @@ if (brandsHeader) {
 brandsObserver.observe(brandsHeader);
 }
 
+
+
 // Пауза анимации при наведении (опционально)
 const brandTracks = document.querySelectorAll('.brands-track');
 brandTracks.forEach(track => {

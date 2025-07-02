@@ -139,19 +139,23 @@ nav {
     display: flex;
     align-items: center;
     padding: 0 5%;
-    margin-top: 120px;
+    margin-top: 100px;
     padding-top: 2rem;
+    
+
 }
 
 .hero-content {
     flex: 1;
     max-width: 600px;
+    
 }
 
 .hero h1 {
+    color: #fc7703;
     font-size: 3.5rem;
     font-weight: 800;
-    color: #1e293b;
+    color: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
     margin-bottom: 1rem;
     line-height: 1.2;
     opacity: 0;
@@ -232,22 +236,53 @@ nav {
 }
 
 .image-card.large {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     grid-row: 1 / 3;
-    background: url("/static/static_photos/air-conditioner.jpg");
+    background: url("/static/static_photos/refrigerator2.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image-card.large2 {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    grid-row: 1 / 3;
+    background: url("/static/static_photos/refrigerator2.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .image-card.small-top {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     background: url("/static/static_photos/refrigerator.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
+.problems-header {
+    margin-top: 100px;
+}
+
+.problems-header h2 {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 2rem;
+}
+
+
 .image-card.small-bottom {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     background: url("/static/static_photos/washing2.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image-card.small-bottom2 {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background: url("/static/static_photos/refrigerator1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -259,7 +294,7 @@ nav {
 
 .image-card:hover {
     transform: translateY(-15px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .image-card:hover .floating-icon {
@@ -873,7 +908,7 @@ nav {
 /* Секция брендов */
 .brands {
 padding: 5rem 0;
-background: #f8fafc;
+/* background: #f8fafc; */
 overflow: hidden;
 }
 
@@ -1072,7 +1107,7 @@ opacity: 1;
 background: #ffffff;
 border-radius: 16px;
 overflow: hidden;
-box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 border: 1px solid #f1f5f9;
 transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 cursor: pointer;
@@ -1100,7 +1135,7 @@ transform: rotate(3deg);
 /* При hover выравниваются */
 .portfolio-card:hover {
 transform: rotate(0deg) scale(1.05);
-box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 z-index: 10;
 }
 
@@ -2529,6 +2564,7 @@ border: 1px solid #e2e8f0;
 border-radius: 12px;
 overflow: hidden;
 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+margin-top: 40px;
 }
 
 .map-wrapper {

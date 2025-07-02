@@ -125,3 +125,26 @@ def delete_callmaster_request(request, request_id):
             return JsonResponse({'success': False, 'error': 'Not found'})
     return JsonResponse({'success': False, 'error': 'Invalid request'})
 
+
+def refrigerator(request):
+    track_view(request, 'refrigerator')
+    callmaster_form = CallMasterForm()
+    if request.method == 'POST':
+        callmaster_form = CallMasterForm(request.POST)
+        if callmaster_form.is_valid():
+            phone = callmaster_form.cleaned_data['phone']
+            ip = request.META.get('REMOTE_ADDR')
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            CallMasterRequest.objects.create(phone=phone, ip_address=ip, user_agent=user_agent)
+            request.session['client_phone'] = phone
+            return redirect('thank_you')
+    date_year = timezone.now().year
+    return render(request, 'page/refrigerator.html', {
+        'date_year': date_year,
+        'callmaster_form': callmaster_form,
+    })
+
+
+
+
+

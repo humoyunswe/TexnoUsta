@@ -9,4 +9,5 @@ urlpatterns = [
     path('phone-click/', views.phone_click, name='phone_click'),
     path('thank-you/', views.thank_you, name='thank_you'),
     path('delete-callmaster-request/<int:request_id>/', views.delete_callmaster_request, name='delete_callmaster_request'),
+    path('refrigerator/', views.refrigerator, name='refrigerator'),
 ]
