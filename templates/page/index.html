@@ -98,7 +98,35 @@
                 </div>
         </div>
 
-     
+             <!-- Модальное окно -->
+        <div class="order-modal" id="orderModal">
+            <div class="modal-box">
+                <div class="modal-header">
+                    <div class="modal-icon">📞</div>
+                    <h3>Заказать услугу</h3>
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <p>Хотите заказать: <strong id="serviceName"></strong>?</p>
+                    <p class="modal-subtitle">Мастер свяжется с вами в течение 5 минут</p>
+                    
+                    <div class="modal-buttons">
+                        <button class="modal-btn call-btn" onclick="makeCall()">
+                            📱 Позвонить сейчас
+                        </button>
+                        <button class="modal-btn cancel-btn" onclick="closeModal()">
+                            Отмена
+                        </button>
+                    </div>
+                    
+                    <div class="phone-info">
+                        🇺🇿 +998 (94) 215-95-55
+                    </div>
+                </div>
+            </div>
+        </div>
+            
         
         <div class="hero-images">
             <div class="image-card large">
@@ -882,7 +910,7 @@
                         <div class="contact-details">
                             <h4>Телефоны</h4>
                             <p><a href="tel:+998942159555">+998 (94) 215-95-55</a></p>
-                            <p><a href="tel:+998931625151">+998 (93) 162-51-51</a></p>
+                            <p><a href="tel:+998949497073">+998 (94) 949-70-73</a></p>
                         </div>
                     </div>
                     

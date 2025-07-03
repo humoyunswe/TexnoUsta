@@ -2834,38 +2834,9 @@ margin: 0.25rem 0;
 line-height: 1.4;
 }
 
-/* Кнопка "Наверх" */
-.scroll-to-top {
-position: fixed;
-bottom: 2rem;
-right: 2rem;
-width: 50px;
-height: 50px;
-background: #2563eb;
-border: none;
-border-radius: 12px;
-color: white;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-transition: all 0.3s ease;
-opacity: 0;
-transform: translateY(20px);
-z-index: 1000;
-}
 
-.scroll-to-top.visible {
-opacity: 1;
-transform: translateY(0);
-}
 
-.scroll-to-top:hover {
-background: #1d4ed8;
-transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-}
+
 
 /* Мобильная версия */
 @media (max-width: 768px) {
@@ -2894,12 +2865,6 @@ gap: 1.5rem;
 text-align: center;
 }
 
-.scroll-to-top {
-width: 45px;
-height: 45px;
-bottom: 1.5rem;
-right: 1.5rem;
-}
 }
 
 @media (max-width: 480px) {
@@ -3079,3 +3044,36 @@ padding: 1rem 1.5rem 1.5rem;
 }
 }
 
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 1200;
+    background: #fc7703;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(252,119,3,0.15);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    opacity: 0.85;
+}
+/* .scroll-to-top:hover {
+    background: #ffb347;
+    box-shadow: 0 6px 24px rgba(252,119,3,0.25);
+    opacity: 1;
+} */
+@media (max-width: 600px) {
+    .scroll-to-top {
+        bottom: 25px;
+        right: 17px;
+        width: 40px;
+        height: 40px;
+    }
+}
