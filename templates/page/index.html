@@ -57,6 +57,12 @@
 {% endblock %}
 
 {% block content %}
+
+ <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDDL4D68"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <style>
     .join-team-banner {
         background: linear-gradient(135deg, #1d1d1f 0%, #2d2d30 50%, #1d1d1f 100%);
@@ -261,7 +267,7 @@
     }
     </style>
     
-    <div class="join-team-banner">
+    {% comment %} <div class="join-team-banner">
         <div class="deco-circle"></div>
         <div class="deco-grid"></div>
         
@@ -288,13 +294,10 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
 <!-- /Баннер для мастеров -->
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDDL4D68"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
+
 
     <!-- Главная секция -->
     <section class="hero" id='hero'>

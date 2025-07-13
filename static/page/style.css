@@ -139,7 +139,7 @@ nav {
     display: flex;
     align-items: center;
     padding: 0 5%;
-    /* margin-top: px; */
+    margin-top: 70px;
     padding-top: 2rem;
     
 
@@ -506,7 +506,7 @@ nav {
         flex-direction: column;
         text-align: center;
         padding: 2rem 5% 0;
-        /* margin-top: 100px; */
+        margin-top: 130px;
         min-height: auto;
         gap: 2rem;
     }
@@ -801,7 +801,7 @@ nav {
         flex-direction: column;
         text-align: center;
         padding: 2rem 5% 0;
-        /* margin-top: 150px; */
+        margin-top: 180px;
         min-height: auto;
         gap: 2rem;
     }
