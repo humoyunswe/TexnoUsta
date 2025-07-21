@@ -87,7 +87,7 @@ document.body.style.overflow = 'hidden';
 
 // Функция звонка
 function makeCall() {
-const phone = '+998942159555';
+const phone = '+998870788118';
 window.location.href = `tel:${phone}`;
 closeModal();
 }
