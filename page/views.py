@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max, Count
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .models import PhoneClick, ViewCounter, RepairOrder, CallMasterRequest
 
@@ -26,7 +28,37 @@ def index(request):
             phone = callmaster_form.cleaned_data['phone']
             ip = request.META.get('REMOTE_ADDR')
             user_agent = request.META.get('HTTP_USER_AGENT', '')
+            
+            # Сохраняем в базу данных
             CallMasterRequest.objects.create(phone=phone, ip_address=ip, user_agent=user_agent)
+            
+            # Отправляем email
+            try:
+                subject = 'Новая заявка на вызов мастера'
+                message = f'''
+Новая заявка на вызов мастера!
+
+Номер телефона: {phone}
+IP адрес: {ip}
+Время заявки: {timezone.now().strftime('%d.%m.%Y %H:%M')}
+User Agent: {user_agent}
+
+Заявка автоматически сохранена в админ панели.
+                '''
+                
+                send_mail(
+                    subject=subject,
+                    message=message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[settings.EMAIL_HOST_USER],  # отправляем на вашу почту
+                    fail_silently=False,
+                )
+                print(f"Email успешно отправлен на {settings.EMAIL_HOST_USER}")
+            except Exception as e:
+                # Логируем ошибку, но не прерываем выполнение
+                print(f"Ошибка отправки email: {e}")
+                print(f"Проверьте настройки SMTP в settings.py")
+            
             request.session['client_phone'] = phone
             return redirect('thank_you')
     date_year = timezone.now().year
