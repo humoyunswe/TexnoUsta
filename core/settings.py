@@ -154,9 +154,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # или другой SMTP сервер
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'humoyunakbaraliyev2159555@gmail.com'  # замените на вашу почту
-EMAIL_HOST_PASSWORD = 'yyentbqfjnxpgguf'  # замените на пароль приложения
-DEFAULT_FROM_EMAIL = 'humoyunakbaraliyev2159555@gmail.com'  # замените на вашу почту
+EMAIL_HOST_USER = 'humoyunakbaraliev1@gmail.com'  # замените на вашу почту
+EMAIL_HOST_PASSWORD = 'sknzhnzclabpffky'  # замените на пароль приложения
+DEFAULT_FROM_EMAIL = 'humoyunakbaraliev1@gmail.com'  # замените на вашу почту
 
 # Для продакшена используйте переменные окружения:
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'your-email@gmail.com')
