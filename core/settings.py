@@ -22,7 +22,7 @@ TEMPLATE_DIR = BASE_DIR / 'templates'
 SECRET_KEY = 'django-insecure-w1pm)79+m6mkgjy!222y4t0@9n&gc@pcwl76gu-0v47(f4ri%9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*','127.0.0.1', '.vercel.app', 'localhost']
 
